@@ -1,0 +1,44 @@
+seed: 42
+
+dataset:
+  # takala/financial_phrasebank (the canonical repo) uses a loading-script format that
+  # datasets>=4.0 refuses to run. This mirror is a plain parquet repo (verified working):
+  # it holds the full ~4846-sentence set (all agreement levels merged, i.e. the union
+  # underlying "sentences_50agree"), with no per-agreement-level configs available.
+  hf_name: "warwickai/financial_phrasebank_mirror"
+  hf_config: null
+  # For the cleaner sentences_66agree/allagree subsets, download FinancialPhraseBank-v1.0.zip
+  # manually and point this at the extracted file (sentence@label, latin-1) as a fallback/opt-in.
+  fallback_file: "data/external/Sentences66Agree.txt"
+  cache_csv: "data/raw/financial_phrasebank.csv"
+
+splits:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  cache_dir: "data/processed"
+
+lexicons:
+  loughran_mcdonald_csv: "data/external/LM_MasterDictionary.csv"
+  lm_cache_pkl: "data/processed/lm_lexicon.pkl"
+
+vader:
+  pos_threshold: 0.05
+  neg_threshold: -0.05
+
+tfidf_ml:
+  ngram_range: [1, 2]
+  min_df: 2
+  C_values: [0.1, 1.0, 10.0]
+  classifiers: ["logreg", "linear_svc"]
+  model_out: "models/tfidf_ml_pipeline.joblib"
+
+finbert:
+  checkpoint: "ProsusAI/finbert"
+  batch_size: 32
+  device: -1  # CPU
+
+results:
+  metrics_dir: "results/metrics"
+  figures_dir: "results/figures"
+  tables_dir: "results/tables"

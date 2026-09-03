@@ -1,0 +1,39 @@
+# --- data & core ---
+pandas>=2.0
+numpy>=1.26
+
+# --- dataset acquisition ---
+datasets>=2.19
+
+# --- preprocessing ---
+nltk>=3.8
+
+# --- lexicon-based models ---
+vaderSentiment>=3.3.2
+openpyxl>=3.1
+
+# --- supervised ML model ---
+scikit-learn>=1.4
+
+# --- transformer model (zero-shot FinBERT) ---
+torch>=2.5
+transformers>=4.40
+
+# --- evaluation & reporting ---
+matplotlib>=3.8
+seaborn>=0.13
+
+# --- notebook environment ---
+jupyter>=1.0
+ipykernel>=6.29
+
+# --- dashboard ---
+streamlit>=1.35
+
+# --- utilities ---
+joblib>=1.4
+pyyaml>=6.0
+tqdm>=4.66
+
+# --- testing (dev) ---
+pytest>=8.0
